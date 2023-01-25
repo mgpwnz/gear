@@ -66,7 +66,7 @@ function backup {
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3 
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
-		$HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5  
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5  
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v4/ ]; then
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4  
