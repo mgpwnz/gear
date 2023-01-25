@@ -92,7 +92,6 @@ function updateSoftware {
 	if [[ `service gear status | grep active` =~ "running" ]]; then
           echo -e "Your gear node \e[32mupgraded and works\e[39m!"
           echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
-          echo -e "Press \e[7mQ\e[0m for exit from status menu"
         else
           echo -e "Your gear node \e[31mwas not upgraded correctly\e[39m, please reinstall."
         fi
@@ -157,7 +156,7 @@ do
 	    "Upgrade")
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			backup
-			updateSoftware
+			#updateSoftware
 			#restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
