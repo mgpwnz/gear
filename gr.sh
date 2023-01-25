@@ -77,10 +77,10 @@ function backup {
 	 echo -e "BackUp ready \e[39m!"
 	}
 function restore {
-	if [ -d $HOME/gearbackup/secret_ed25519_V6 ]; then
+	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6 ]; then
 	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 
 	fi
-	if [ -d $HOME/gearbackup/secret_ed25519_V5 ]; then
+	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5 ]; then
 	cp $HOME/gearbackup/secret_ed25519_V4 $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 
 	fi
 	sudo systemctl restart gear
