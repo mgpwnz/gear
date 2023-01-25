@@ -60,11 +60,11 @@ function installSoftware {
 }
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
-  		 mkdir $HOME/gearbackup/ 
-			cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5 &&\
-			cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4 &&\
-			cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3 
-			echo -e "BackUp ready \e[39m!"
+  		mkdir $HOME/gearbackup/ 
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5 
+		#cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4
+		#cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3 
+		echo -e "BackUp ready \e[39m!"
 	 fi
 	}
 function restore {
