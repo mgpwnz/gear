@@ -59,81 +59,90 @@ function installSoftware {
 	cd $HOME
 }
 function backup {
-	 ironfish testnet
+	if [ ! /root/gearbackup/ ]; then
+  		[ mkdir /root/gearbackup/ ]
+	fi
+	if [ root/.local/share/gear/chainsgear_staging_testnet_v5/ ]; then
+	 [cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5]
+	 elif [ root/.local/share/gear/chainsgear_staging_testnet_v4/ ]; then
+	 [cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4]
+	 elif [ root/.local/share/gear/chainsgear_staging_testnet_v3/ ]; then
+	 [cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3]
+	 fi
 	}
-function quest {
-	wget -O mbs.sh https://raw.githubusercontent.com/mgpwnz/ironfish/main/mbs.sh && \
-	chmod u+x mbs.sh
-	printf "SHELL=/bin/bash
-	PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-	10 0,4,8,12,16,20 * * * bash /root/mbs.sh "$MAIL" >> /root/mbs.log
-	" > /etc/cron.d/mbs
+function restore {
+	if [/root/gearbackup/secret_ed25519_V6 ]; then
+	[ cp /root/gearbackup/secret_ed25519_V5 /root/.local/share/gear/chainsgear_staging_testnet_v6/network/secret_ed25519 ]
+	elif [/root/gearbackup/secret_ed25519_V5 ]; then
+	[ cp /root/gearbackup/secret_ed25519_V5 /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 ]
+	elif [ ! /root/gearbackup/secret_ed25519_V5 ] [ /root/gearbackup/secret_ed25519_V4 ] ; then
+	[ cp /root/gearbackup/secret_ed25519_V4 /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 ]
+	elif [ ! /root/gearbackup/secret_ed25519_V5 ] [ ! /root/gearbackup/secret_ed25519_V4 ] ; then
+	[ cp /root/gearbackup/secret_ed25519_V3 /root/.local/share/gear/chainsgear_staging_testnet_vr/network/secret_ed25519 ]
+	fi
+	sudo systemctl restart gear
+	
   }
 
 function updateSoftware {
-	sudo systemctl stop ironfishd
+	sudo systemctl stop gear
 	cd $HOME
-	npm update -g ironfish
-	sudo systemctl restart ironfishd
+	/root/gear purge-chain -y
+	sudo systemctl start gear
 	sleep 2
-	if [[ `service ironfishd status | grep active` =~ "running" ]]; then
-          echo -e "Your IronFish node \e[32mupgraded and works\e[39m!"
-          echo -e "You can check node status by the command \e[7mservice ironfishd status\e[0m"
+	if [[ `service geard status | grep active` =~ "running" ]]; then
+          echo -e "Your gear node \e[32mupgraded and works\e[39m!"
+          echo -e "You can check node status by the command \e[7mservice geard status\e[0m"
           echo -e "Press \e[7mQ\e[0m for exit from status menu"
         else
-          echo -e "Your IronFish node \e[31mwas not upgraded correctly\e[39m, please reinstall."
+          echo -e "Your gear node \e[31mwas not upgraded correctly\e[39m, please reinstall."
         fi
 	 . $HOME/.bash_profile
 }
 
 function installService {
-echo -e '\n\e[42mRunning\e[0m\n' && sleep 1
-echo -e '\n\e[42mCreating a service\e[0m\n' && sleep 1
-echo "[Unit]
-Description=IronFish Node
-After=network-online.target
+sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
+Storage=persistent
+EOF
+sudo systemctl restart systemd-journald
+
+sudo tee <<EOF >/dev/null /etc/systemd/system/gear.service
+[Unit]
+Description=Gear Node
+After=network.target
 [Service]
-User=$USER
-ExecStart=$(which ironfish) start
+Type=simple
+User=root
+WorkingDirectory=/root/
+ExecStart=/root/gear \
+        --name $NODENAME_GEAR \
+        --execution wasm \
+	--port 31333 \
+        --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \
+	--telemetry-url 'wss://telemetry.postcapitalist.io/submit 0'
 Restart=always
 RestartSec=10
 LimitNOFILE=10000
 [Install]
 WantedBy=multi-user.target
-" > $HOME/ironfishd.service
-sudo mv $HOME/ironfishd.service /etc/systemd/system
-sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
-Storage=persistent
 EOF
-sudo systemctl restart systemd-journald
-sudo systemctl daemon-reload
-echo -e '\n\e[42mRunning a service\e[0m\n' && sleep 1
-sudo systemctl enable ironfishd
-sudo systemctl restart ironfishd
-echo -e '\n\e[42mCheck node status\e[0m\n' && sleep 1
-if [[ `service ironfishd status | grep active` =~ "running" ]]; then
-  echo -e "Your IronFish node \e[32minstalled and works\e[39m!"
-  echo -e "You can check node status by the command \e[7mservice ironfishd status\e[0m"
-  echo -e "Press \e[7mQ\e[0m for exit from status menu"
-else
- echo -e "Your IronFish node \e[31mwas not installed correctly\e[39m, please reinstall."
-fi
-. $HOME/.bash_profile
+
+sudo systemctl restart systemd-journald &>/dev/null
+sudo systemctl daemon-reload &>/dev/null
+sudo systemctl enable gear &>/dev/null
+sudo systemctl restart gear &>/dev/null
+
 }
 
-function deleteIronfish {
-	sudo systemctl disable ironfishd
-	sudo systemctl stop ironfishd
-	sudo rm -rf $HOME/ironfish $HOME/.ironfish $(which ironfish)
+function deletegear {
+		systemctl stop gear
+		systemctl disable gear
+		rm -rf $HOME/.local/share/gear/chains/staging_testnet/db
 }
-function deletequest {
-	sudo rm $HOME/mbs.sh /etc/cron.d/mbs
-	#Old file#
-	sudo rm /etc/cron.d/afish $HOME/faucet.sh
-}
+
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Only_Quest" "Upgrade" "Delete" "Delete_Quest" "Quit")
+options=("Install" "Upgrade" "Delete" "Delete_Quest" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -142,38 +151,20 @@ do
 			setupVars
 			installDeps
 			installSoftware
-			connect
-			installService
-			quest
+			#backup
 			echo -e '\n\e[33mNode with quest install!\e[0m\n' && sleep 1
 			break
             ;;
-	    "Only_Quest")
-            echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
-	    		setupVars
-			quest
-			echo -e '\n\e[33mQuest install!\e[0m\n' && sleep 1
-			break
-            ;;
-	"Upgrade")
+	    "Upgrade")
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			updateSoftware
-			connect
-			quest
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
-			deleteIronfish
-			deletequest
-			echo -e '\n\e[42mIronfish was deleted!\e[0m\n' && sleep 1
-			break
-            ;;
-		"Delete_Quest")
-            echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
-			deletequest
-			echo -e '\n\e[42mIronfish was deleted!\e[0m\n' && sleep 1
+			deletegear
+			echo -e '\n\e[42mGear was deleted!\e[0m\n' && sleep 1
 			break
             ;;
         "Quit")
