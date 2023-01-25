@@ -60,22 +60,28 @@ function installSoftware {
 }
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
-  		mkdir $HOME/gearbackup/ 
+  		mkdir $HOME/gearbackup
 		cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5 
-		#cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4
-		#cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3 
-		echo -e "BackUp ready \e[39m!"
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3 
 	 fi
+	 if [  -d $HOME/.local/share/gear/chainsgear_staging_testnet_v5/ ]; then
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5  
+	 fi
+	 if [  -d $HOME/.local/share/gear/chainsgear_staging_testnet_v4/ ]; then
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 /root/gearbackup/secret_ed25519_V4  
+	 fi
+	 if [  -d $HOME/.local/share/gear/chainsgear_staging_testnet_v3/ ]; then
+		cp /root/.local/share/gear/chainsgear_staging_testnet_v3/network/secret_ed25519 /root/gearbackup/secret_ed25519_V3  
+	 fi
+	 echo -e "BackUp ready \e[39m!"
 	}
 function restore {
-	if [/root/gearbackup/secret_ed25519_V6 ]; then
-	[ cp /root/gearbackup/secret_ed25519_V5 /root/.local/share/gear/chainsgear_staging_testnet_v6/network/secret_ed25519 ]
-	elif [/root/gearbackup/secret_ed25519_V5 ]; then
-	[ cp /root/gearbackup/secret_ed25519_V5 /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 ]
-	elif [ ! /root/gearbackup/secret_ed25519_V5 ] [ /root/gearbackup/secret_ed25519_V4 ] ; then
-	[ cp /root/gearbackup/secret_ed25519_V4 /root/.local/share/gear/chainsgear_staging_testnet_v4/network/secret_ed25519 ]
-	elif [ ! /root/gearbackup/secret_ed25519_V5 ] [ ! /root/gearbackup/secret_ed25519_V4 ] ; then
-	[ cp /root/gearbackup/secret_ed25519_V3 /root/.local/share/gear/chainsgear_staging_testnet_vr/network/secret_ed25519 ]
+	if [ -d /root/gearbackup/secret_ed25519_V6 ]; then
+	cp /root/gearbackup/secret_ed25519_V5 /root/.local/share/gear/chainsgear_staging_testnet_v6/network/secret_ed25519 
+	fi
+	if [ -d /root/gearbackup/secret_ed25519_V5 ]; then
+	cp /root/gearbackup/secret_ed25519_V4 /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 
 	fi
 	sudo systemctl restart gear
 	
@@ -154,7 +160,7 @@ do
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			backup
 			#updateSoftware
-			#restore
+			restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
