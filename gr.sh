@@ -86,13 +86,12 @@ function restore {
 
 function updateSoftware {
 	sudo systemctl stop gear
-	cd $HOME
 	/root/gear purge-chain -y
 	sudo systemctl start gear
 	sleep 2
-	if [[ `service geard status | grep active` =~ "running" ]]; then
+	if [[ `service gear status | grep active` =~ "running" ]]; then
           echo -e "Your gear node \e[32mupgraded and works\e[39m!"
-          echo -e "You can check node status by the command \e[7mservice geard status\e[0m"
+          echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
           echo -e "Press \e[7mQ\e[0m for exit from status menu"
         else
           echo -e "Your gear node \e[31mwas not upgraded correctly\e[39m, please reinstall."
@@ -152,7 +151,7 @@ do
 			installDeps
 			installSoftware
 			installService 
-			echo -e '\n\e[33mNode with quest install!\e[0m\n' && sleep 1
+			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
 			break
             ;;
 	    "Upgrade")
