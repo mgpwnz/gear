@@ -156,8 +156,9 @@ do
             ;;
 	    "Upgrade")
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
-			updateSoftware
 			backup
+			updateSoftware
+			#restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
