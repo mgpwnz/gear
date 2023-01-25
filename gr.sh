@@ -59,9 +59,9 @@ function installSoftware {
 	cd $HOME
 }
 function backup {
-	if [ ! -d $HOME/gearbackup/ ]; then
-  		 mkdir $HOME/gearbackup/ 
-	fi
+	#if [ ! -d $HOME/gearbackup/ ]; then
+  	#	 mkdir $HOME/gearbackup/ 
+	#fi
 	if [ -d root/.local/share/gear/chainsgear_staging_testnet_v5/ ]; then
 	  cp /root/.local/share/gear/chainsgear_staging_testnet_v5/network/secret_ed25519 /root/gearbackup/secret_ed25519_V5 
 	 elif [ -d root/.local/share/gear/chainsgear_staging_testnet_v4/ ]; then
