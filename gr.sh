@@ -151,7 +151,8 @@ do
 			setupVars
 			installDeps
 			installSoftware
-			#backup
+			installService 
+			backup
 			echo -e '\n\e[33mNode with quest install!\e[0m\n' && sleep 1
 			break
             ;;
