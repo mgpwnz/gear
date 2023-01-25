@@ -142,7 +142,7 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Upgrade" "Delete" "Delete_Quest" "Quit")
+options=("Install" "Upgrade" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
