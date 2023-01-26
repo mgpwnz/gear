@@ -58,6 +58,16 @@ function installSoftware {
   chmod +x $HOME/gear &>/dev/null
 	cd $HOME
 }
+function firewall {
+sudo ufw allow 22:65535/tcp
+sudo ufw allow 22:65535/udp
+sudo ufw deny out from any to 10.0.0.0/8
+sudo ufw deny out from any to 192.168.0.0/16
+sudo ufw deny out from any to 100.64.0.0/10
+sudo ufw deny out from any to 198.18.0.0/15
+sudo ufw deny out from any to 169.254.0.0/16
+sudo ufw --force enable
+}
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
@@ -148,6 +158,7 @@ do
  		echo -e '\n\e[42mYou choose install...\e[0m\n' && sleep 1
 			setupVars
 			installDeps
+			firewall
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
