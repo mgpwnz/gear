@@ -170,7 +170,7 @@ do
 	    "Clear_db")
 	    echo -e '\n\e[33mYou choose clear db...\e[0m\n' && sleep 1
 			cleardb
-			echo -e '\n\e[33mDB remove!\e[0m\n' && sleep 1
+			echo -e '\n\e[34mDB removed!\e[0m\n' && sleep 1
 	    		break
 	    ;;
 	    "Delete")
