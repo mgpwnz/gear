@@ -149,7 +149,7 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-#options=("Install" "Upgrade" "Delete" "Quit")
+#options=("Install" "Clear_db" "Upgrade" "Delete" "Quit")
 options=("Install" "Clear_db" "Delete" "Quit")
 select opt in "${options[@]}"
 do
@@ -168,7 +168,7 @@ do
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			backup
 			updateSoftware
-			#restore
+			restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
