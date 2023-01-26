@@ -53,10 +53,12 @@ function installDeps {
 function installSoftware {
   echo -e '\n\e[42mInstall node\e[0m\n' && sleep 1
 	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  rm gear-nightly-linux-x86_64.tar.xz
-  chmod +x $HOME/gear &>/dev/null
-	cd $HOME
+  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
+  	rm gear-nightly-linux-x86_64.tar.xz
+  	chmod +x $HOME/gear &>/dev/null
+	if [ ! f &HOME/gear ]; then
+	return 1 2>/dev/null; exit 1
+	fi
 }
 function firewall {
 sudo ufw allow 22:65535/tcp
