@@ -82,7 +82,11 @@ function restore {
 	sudo systemctl restart gear
 	
   }
-
+function cleardb { 
+	sudo systemctl stop gear 
+	/root/gear purge-chain -y
+	sudo systemctl start gear
+}
 function updateSoftware {
 	sudo systemctl stop gear
 	/root/gear purge-chain -y
@@ -141,7 +145,7 @@ function deletegear {
 
 PS3='Please enter your choice (input your option number and press enter): '
 #options=("Install" "Upgrade" "Delete" "Quit")
-options=("Install" "Delete" "Quit")
+options=("Install" "Clear_db" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -163,6 +167,12 @@ do
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
+	    "Clear_db ")
+	    echo -e '\n\e[33mYou choose clear db...\e[0m\n' && sleep 1
+			cleardb
+			echo -e '\n\e[33mDB remove!\e[0m\n' && sleep 1
+	    		break
+	    ;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
 			deletegear
