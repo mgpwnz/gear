@@ -140,7 +140,8 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Upgrade" "Delete" "Quit")
+#options=("Install" "Upgrade" "Delete" "Quit")
+options=("Install" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -151,6 +152,7 @@ do
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
+			echo -e '\n\e[33mCheck logs [43mjournalctl -u gear-node\e[0m\n' && sleep 1
 			break
             ;;
 	    "Upgrade")
