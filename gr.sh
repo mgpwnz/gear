@@ -57,15 +57,6 @@ function installSoftware {
   	rm gear-nightly-linux-x86_64.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 }
-function firewall {
-sudo ufw allow 22:65535/tcp
-sudo ufw allow 22:65535/udp
-sudo ufw deny out from any to 10.0.0.0/8
-sudo ufw deny out from any to 100.64.0.0/10
-sudo ufw deny out from any to 198.18.0.0/15
-sudo ufw deny out from any to 169.254.0.0/16
-sudo ufw --force enable
-}
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
@@ -124,6 +115,7 @@ ExecStart=/root/gear \
         --name $NODENAME_GEAR \
         --execution wasm \
 	--port 31333 \
+	--no-private-ipv4 \
         --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \
 	--telemetry-url 'wss://telemetry.postcapitalist.io/submit 0'
 Restart=always
@@ -156,7 +148,6 @@ do
  		echo -e '\n\e[42mYou choose install...\e[0m\n' && sleep 1
 			setupVars
 			installDeps
-			firewall
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
