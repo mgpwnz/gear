@@ -90,8 +90,13 @@ function cleardb {
 function updateSoftware {
 	sudo systemctl stop gear
 	/root/gear purge-chain -y
-	sudo systemctl start gear
 	sleep 2
+	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
+  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
+  	rm gear-nightly-linux-x86_64.tar.xz
+  	chmod +x $HOME/gear &>/dev/null
+	sleep 2
+	sudo systemctl start gear
 	if [[ `service gear status | grep active` =~ "running" ]]; then
           echo -e "Your gear node \e[32mupgraded and works\e[39m!"
           echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
@@ -163,7 +168,7 @@ do
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			backup
 			updateSoftware
-			restore
+			#restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
