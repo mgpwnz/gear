@@ -56,9 +56,6 @@ function installSoftware {
   	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
   	rm gear-nightly-linux-x86_64.tar.xz
   	chmod +x $HOME/gear &>/dev/null
-	if [ ! f &HOME/gear ]; then
-	return 1 2>/dev/null; exit 1
-	fi
 }
 function firewall {
 sudo ufw allow 22:65535/tcp
