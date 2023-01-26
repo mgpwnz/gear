@@ -152,7 +152,7 @@ do
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
-			echo -e "Check logs: \e[31mjournalctl -u gear-node\e[39m"
+			echo -e "Check logs: \e[33m journalctl -u gear-node -n 50\e[39m"
 			break
             ;;
 	    "Upgrade")
