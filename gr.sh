@@ -144,6 +144,7 @@ sudo systemctl restart gear &>/dev/null
 function deletegear {
 		systemctl stop gear
 		systemctl disable gear
+		rm $HOME/gear
 		rm -rf $HOME/.local/share/gear/chains/staging_testnet/db
 }
 
