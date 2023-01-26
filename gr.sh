@@ -167,7 +167,7 @@ do
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
-	    "Clear_db ")
+	    "Clear_db")
 	    echo -e '\n\e[33mYou choose clear db...\e[0m\n' && sleep 1
 			cleardb
 			echo -e '\n\e[33mDB remove!\e[0m\n' && sleep 1
