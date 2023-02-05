@@ -192,8 +192,7 @@ do
 	    echo -e '\n\e[33mYou choose Log\e[0m\n' && sleep 1
 			logs
 		 		break
-				exit
-	    ;;
+				;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
 			deletegear
