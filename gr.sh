@@ -104,6 +104,9 @@ function updateSoftware {
         fi
 	 . $HOME/.bash_profile
 }
+function logs{
+	journalctl -n 100 -f -u gear
+}
 
 function installService {
 sudo tee <<EOF >/dev/null /etc/systemd/journald.conf
@@ -184,6 +187,12 @@ do
 			cleardb
 			echo -e '\n\e[34mData Base removed!\e[0m\n' && sleep 1
 	    		break
+	    ;;
+		 "Log")
+	    echo -e '\n\e[33mYou choose Log\e[0m\n' && sleep 1
+			logs
+		 		break
+				exit
 	    ;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
