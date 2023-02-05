@@ -95,7 +95,7 @@ function updateSoftware {
   	rm gear-nightly-linux-x86_64.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 	sleep 2
-	sudo systemctl start gear
+	sudo systemctl restart gear
 	if [[ `service gear status | grep active` =~ "running" ]]; then
           echo -e "Your gear node \e[32mupgraded and works\e[39m!"
           echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
