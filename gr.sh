@@ -150,7 +150,7 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-#options=("Install" "Clear_db" "Upgrade" "Delete" "Quit")
+#options=("Install" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
 options=("Install" "Clear_db" "Delete" "Quit")
 select opt in "${options[@]}"
 do
@@ -163,6 +163,12 @@ do
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
 			echo -e "Check logs: \e[35m journalctl -u gear -n 50\e[0m\n"
+			break
+            ;;
+		"Update")
+            echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
+			updateSoftware
+			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
 			break
             ;;
 	    "Upgrade")
