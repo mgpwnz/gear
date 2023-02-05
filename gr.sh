@@ -104,8 +104,8 @@ function updateSoftware {
         fi
 	 . $HOME/.bash_profile
 }
-function logs{
-	journalctl -n 100 -f -u gear
+function logs {
+		journalctl -n 100 -f -u gear
 }
 
 function installService {
