@@ -89,7 +89,6 @@ function cleardb {
 }
 function updateSoftware {
 	sudo systemctl stop gear
-	/root/gear purge-chain -y
 	sleep 2
 	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
   	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
@@ -174,6 +173,7 @@ do
 	    "Upgrade")
             echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
 			backup
+			cleardb
 			updateSoftware
 			restore
 			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
