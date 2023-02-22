@@ -77,7 +77,7 @@ function backup {
 	}
 function restore {
 	if [ -d $HOME/.local/share/gear/chains/*** ]; then
-	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/***/network/secret_ed25519 
+	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 
 	fi
 	sudo systemctl restart gear
 	
@@ -152,8 +152,8 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-#options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
-options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
+options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
+#options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
