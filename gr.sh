@@ -60,9 +60,13 @@ function installSoftware {
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V4
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V3 
+	 fi
+	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6/ ]; then
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6  
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
@@ -78,7 +82,7 @@ function backup {
 function restore {
 	sleep 45
 	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6 ]; then
-	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 
+	cp $HOME/gearbackup/secret_ed25519_V6 $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519 
 	fi
 	sudo systemctl restart gear
 	
@@ -153,8 +157,8 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
-#options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
+#options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
+options=("Install" "Log" "Clear_db" "Update" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
