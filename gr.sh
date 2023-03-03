@@ -61,9 +61,7 @@ function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V4
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V3 
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6/ ]; then
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6  
@@ -71,12 +69,7 @@ function backup {
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
 	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v4/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v4/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V4  
-	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v3/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v3/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V3  
-	 fi
+
 	 echo -e "BackUp ready \e[39m!"
 	}
 function restore {
