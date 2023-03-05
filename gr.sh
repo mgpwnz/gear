@@ -60,14 +60,14 @@ function installSoftware {
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6 2&>/dev/null
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 2&>/dev/null
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6  
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6  2&>/dev/null
 	 fi
 	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  
+		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5  2&>/dev/null
 	 fi
 
 	 echo -e "BackUp ready \e[39m!"
