@@ -194,6 +194,7 @@ do
 				;;
 	    "Delete")
             echo -e '\n\e[31mYou choose delete...\e[0m\n' && sleep 1
+			backup
 			deletegear
 			echo -e '\n\e[42mGear was deleted!\e[0m\n' && sleep 1
 			break
