@@ -76,7 +76,7 @@ function restore {
 	sleep 45
 	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6 ]; then
 	#cp $HOME/gearbackup/secret_ed25519_V6 $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519 2&>/dev/null
-	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 2&>/dev/null
+	cp $HOME/gearbackup/secret_ed25519_V5 $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519
 	fi
 	sudo systemctl restart gear
 	
