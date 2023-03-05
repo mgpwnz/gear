@@ -162,6 +162,7 @@ do
 			installSoftware
 			installService 
 			echo -e '\n\e[33mNode install!\e[0m\n' && sleep 1
+			restore
 			echo -e "Check logs: \e[35m journalctl -n 100 -f -u gear\e[0m\n"
 			break
             ;;
