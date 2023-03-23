@@ -99,12 +99,6 @@ function updateSoftware {
   	chmod +x $HOME/gear &>/dev/null
 	sleep 2
 	sudo systemctl restart gear
-	if [[ `service gear status | grep active` =~ "running" ]]; then
-          echo -e "Your gear node \e[32mupgraded and works\e[39m!"
-          echo -e "You can check node status by the command \e[7mservice gear status\e[0m"
-        else
-          echo -e "Your gear node \e[31mwas not upgraded correctly\e[39m, please reinstall."
-        fi
 	 . $HOME/.bash_profile
 }
 function logs {
