@@ -58,7 +58,6 @@ function installSoftware {
   	chmod +x $HOME/gear &>/dev/null
 }
 function backup {
-	#Fix next 63-66 + add new
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
 		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V7
@@ -79,7 +78,6 @@ function backup {
 	}
 function restore {
 	sleep 45
-	# fix next version 82 83
 	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v7 ]; then
 	cp $HOME/gearbackup/secret_ed25519_V6 $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519
 	fi
