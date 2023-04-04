@@ -165,9 +165,9 @@ do
 			break
             ;;
 		"Update")
-            echo -e '\n\e[33mYou choose upgrade...\e[0m\n' && sleep 1
+            echo -e '\n\e[33mYou choose update...\e[0m\n' && sleep 1
 			updateSoftware
-			echo -e '\n\e[33mYour node was upgraded!\e[0m\n' && sleep 1
+			echo -e '\n\e[33mYour node was update!\e[0m\n' && sleep 1
 			break
             ;;
 	    "Upgrade")
