@@ -71,8 +71,9 @@ function backup {
 function restore {
 	sleep 45
 	last=$(ls -tr1 $HOME/.local/share/gear/chains | tail -1)
+	backup=$(ls -tr1 $HOME/gearbackup/ | tail -1)
 	if [ -d $HOME/.local/share/gear/chains/$last ]; then
-	cp $HOME/gearbackup/secret_ed25519* $HOME/.local/share/gear/chains/$last/network/secret_ed25519
+	cp $HOME/gearbackup/$backup $HOME/.local/share/gear/chains/$last/network/secret_ed25519
 	fi
 	sudo systemctl restart gear
 	
