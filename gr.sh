@@ -60,26 +60,20 @@ function installSoftware {
 function backup {
 	if [ ! -d $HOME/gearbackup/ ]; then
   		mkdir $HOME/gearbackup
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V7
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6 
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 
 	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v7/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V7 
+	 #создаем бекап
+	 last=$(ls -tr1 $HOME/.local/share/gear/chains | tail -1)
+	 if [  -d $HOME/.local/share/gear/chains/$last ]; then
+		cp $HOME/.local/share/gear/chains/$last/network/secret_ed25519 $HOME/gearbackup/secret_ed25519 
 	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v6/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v6/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V6 
-	 fi
-	 if [  -d $HOME/.local/share/gear/chains/gear_staging_testnet_v5/ ]; then
-		cp $HOME/.local/share/gear/chains/gear_staging_testnet_v5/network/secret_ed25519 $HOME/gearbackup/secret_ed25519_V5 
-	 fi
-
 	 echo -e "BackUp ready \e[39m!"
 	}
 function restore {
 	sleep 45
-	if [ -d $HOME/.local/share/gear/chains/gear_staging_testnet_v7 ]; then
-	cp $HOME/gearbackup/secret_ed25519_V6 $HOME/.local/share/gear/chains/gear_staging_testnet_v7/network/secret_ed25519
+	last=$(ls -tr1 $HOME/.local/share/gear/chains | tail -1)
+	backup=$(ls -tr1 $HOME/gearbackup/ | tail -1)
+	if [ -d $HOME/.local/share/gear/chains/$last ]; then
+	cp $HOME/gearbackup/$backup $HOME/.local/share/gear/chains/$last/network/secret_ed25519
 	fi
 	sudo systemctl restart gear
 	
