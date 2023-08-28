@@ -52,9 +52,9 @@ function installDeps {
 
 function installSoftware {
   echo -e '\n\e[42mInstall node\e[0m\n' && sleep 1
-	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	rm gear-nightly-linux-x86_64.tar.xz
+	wget https://get.gear.rs/gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	tar xvf gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	rm gear-nightly-x86_64-unknown-linux-gnu.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 }
 function backup {
@@ -86,9 +86,9 @@ function cleardb {
 function updateSoftware {
 	sudo systemctl stop gear
 	sleep 2
-	wget https://get.gear.rs/gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	tar xvf gear-nightly-linux-x86_64.tar.xz &>/dev/null
-  	rm gear-nightly-linux-x86_64.tar.xz
+	wget https://get.gear.rs/gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	tar xvf gear-nightly-x86_64-unknown-linux-gnu.tar.xz &>/dev/null
+  	rm gear-nightly-x86_64-unknown-linux-gnu.tar.xz
   	chmod +x $HOME/gear &>/dev/null
 	sleep 2
 	sudo systemctl restart gear
