@@ -116,6 +116,8 @@ ExecStart=/root/gear \
         --name $NODENAME_GEAR \
         --execution wasm \
 	--port 31333 \
+	--rpc-port 9953 \
+	--ws-port 9954 \
 	--no-private-ipv4 \
         --telemetry-url 'ws://telemetry-backend-shard.gear-tech.io:32001/submit 0' \
 	--telemetry-url 'wss://telemetry.postcapitalist.io/submit 0'
@@ -162,6 +164,7 @@ do
             echo -e '\n\e[33mYou choose update...\e[0m\n' && sleep 1
 	    		backup
 			updateSoftware
+			installService
 			echo -e '\n\e[33mYour node was update!\e[0m\n' && sleep 1
 			break
             ;;
