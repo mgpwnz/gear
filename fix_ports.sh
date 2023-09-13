@@ -67,3 +67,7 @@ if [-f $HOME/subspace/docker-compose.yml ]; then
 docker compose -f $HOME/subspace/docker-compose.yml restart
 fi
 }
+# Actions
+sudo apt install wget -y &>/dev/null
+cd
+$function
