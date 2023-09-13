@@ -15,9 +15,8 @@ while test $# -gt 0; do
 	esac
 done
 install() {
-if [ ! $NODENAME_GEAR ]; then
-		read -p "Enter node Name: " NODENAME_GEAR
-	fi
+read -p "Enter node Name: " NODENAME_GEAR
+
 echo 'Your node Name: ' $NODENAME_GEAR
 echo 'source $HOME/.bashrc' >> $HOME/.bash_profile
 sleep 1
