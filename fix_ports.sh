@@ -15,7 +15,6 @@ while test $# -gt 0; do
 	esac
 done
 install() {
-echo 1
 read -p "Enter node Name: " NODENAME_GEAR
 
 echo 'Your node Name: ' $NODENAME_GEAR
@@ -57,16 +56,15 @@ sudo systemctl enable gear &>/dev/null
 sudo systemctl restart gear &>/dev/null
 
 sleep 2
-echo adv    
+#adv    
 systemctl restart subspace-node.service &>/dev/null
 systemctl restart subspace-farmer.service &>/dev/null
 #pulsar
 
 systemctl restart subspace  &>/dev/null
-echo docker 
-if [-f $HOME/subspace/docker-compose.yml ]; then
-docker compose -f $HOME/subspace/docker-compose.yml restart
-fi
+# docker 
+docker compose -f $HOME/subspace/docker-compose.yml restart &>/dev/null
+echo UPDATE
 }
 # Actions
 sudo apt install wget -y &>/dev/null
