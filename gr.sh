@@ -164,7 +164,6 @@ do
             echo -e '\n\e[33mYou choose update...\e[0m\n' && sleep 1
 	    		backup
 			updateSoftware
-			installService
 			echo -e '\n\e[33mYour node was update!\e[0m\n' && sleep 1
 			break
             ;;
