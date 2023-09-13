@@ -63,7 +63,7 @@ systemctl restart subspace-farmer.service &>/dev/null
 
 systemctl restart subspace  &>/dev/null
 # docker 
-docker compose -f $HOME/subspace/docker-compose.yml restart &>/dev/null
+#docker compose -f $HOME/subspace/docker-compose.yml restart &>/dev/null
 echo UPDATE
 }
 # Actions
