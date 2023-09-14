@@ -164,7 +164,7 @@ do
             echo -e '\n\e[33mYou choose update...\e[0m\n' && sleep 1
 			setupVars
 			installService
-			echo -e '\n\e[33mYour node was update!\e[0m\n' && sleep 1
+			echo -e '\n\e[33mYour ports 9944(9954) 9933(9953) update!\e[0m\n' && sleep 1
 			break
             ;;
 		"Update")
