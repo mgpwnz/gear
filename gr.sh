@@ -144,8 +144,8 @@ function deletegear {
 
 
 PS3='Please enter your choice (input your option number and press enter): '
-#options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
-options=("Install" "Log" "Clear_db" "Update" "Update ports" "Delete" "Quit")
+options=("Install" "Log" "Clear_db" "Update" "Upgrade" "Delete" "Quit")
+#options=("Install" "Log" "Clear_db" "Update" "Update ports" "Delete" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
